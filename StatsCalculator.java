@@ -6,41 +6,41 @@ public class StatsCalculator {
     private double[] outliers;
 
     /**
-     * the default constructor
-     * initializes values as an array of 20 values that are 0
+     * The default constructor.
+     * Initializes values as an array of 20 values that are 0.
      */
     public StatsCalculator(){
         values = new double[20];
     }
 
     /**
-     * constructor requiring a double array of values
-     * @param values values that will be set to values
+     * Constructor requiring a double array of values.
+     * @param values Values that will be set to values.
      */
     public StatsCalculator(double[] values){
         this.values = values;
     }
 
     /**
-     * calculates the maximum value of values and returns it
-     * @return double maximum value
+     * Calculates the maximum value of values and returns it.
+     * @return Double maximum value.
      */
     public double calculateMax(){
         sortIfNotSorted();
         return sortedValues[sortedValues.length-1];
-    } //- find the maximum value in the array
+    }
 
     /**
-     * calculates the minimum value of values and returns it
-     * @return double minimum value
+     * Calculates the minimum value of values and returns it.
+     * @return Double minimum value.
      */
     public double calculateMin(){
         sortIfNotSorted();
         return sortedValues[0];
-    } //- finds the minimum value in the array
+    }
 
     /**
-     * sorts the data (values) and sets it to a different array sortedValues
+     * Sorts the data (values) and sets it to a different array sortedValues.
      */
     public void sortData(){
         double [] tempValues = new double[values.length];
@@ -50,12 +50,12 @@ public class StatsCalculator {
         //memory issue, values were overriden before by Arrays.sort method
         sortedValues = tempValues;
         Arrays.sort(sortedValues);
-    }  //sorts the data
+    }
 
     /**
-     * calculates the first Quartile of values and returns it
-     * the median is excluded in calculations
-     * @return double the first quartile
+     * Calculates the first Quartile of values and returns it.
+     * The median is excluded in calculations.
+     * @return double the first quartile.
      */
     public double calculateFirstQuartile(){
         int c = 0;
@@ -74,12 +74,12 @@ public class StatsCalculator {
             firstHalf[i]  = (double) firstHalfAL[i];
         }
         return calculateMedianOf(firstHalf);
-    } //- finds the value of the first quartile. Please note that I exclude the median for calculating the quartiles
+    }
 
     /**
-     * calculates the third quartile of values and returns it
-     * the median is excluded in calculations
-     * @return double the third quartile
+     * Calculates the third quartile of values and returns it.
+     * The median is excluded in calculations.
+     * @return Double the third quartile.
      */
     public double calculateThirdQuartile(){
         int c = 0;
@@ -101,17 +101,17 @@ public class StatsCalculator {
     }
 
     /**
-     * calculates the median of values and returns it
-     * @return double median
+     * Calculates the median of values and returns it.
+     * @return Double median.
      */
     public double calculateMedian(){
         return calculateMedianOf(sortedValues);
     } //- finds the value of the median
 
     /**
-     * calculates the median of the provided sortedArray and returns it
-     * @param sortedArray - the sorted array where the median will be found
-     * @return double median of the provided values
+     * Calculates the median of the provided sortedArray and returns it.
+     * @param sortedArray - The sorted array where the median will be found.
+     * @return Double median of the provided values.
      */
     private double calculateMedianOf(double[] sortedArray){
         double median = -1; // redundant number
@@ -124,8 +124,8 @@ public class StatsCalculator {
     }
 
     /**
-     * calculates the sum of values and returns it
-     * @return double sum
+     * Calculates the sum of values and returns it.
+     * @return Double sum.
      */
     public double calculateSum(){
         double sum = 0;
@@ -133,28 +133,28 @@ public class StatsCalculator {
             sum+=v;
         }
         return sum;
-    } //- finds the sum of the array
+    }
 
     /**
-     * calculates the mean (average) of values and returns it
-     * @return double mean
+     * Calculates the mean (average) of values and returns it.
+     * @return Double mean.
      */
     public double calculateMean(){
         return calculateSum()/(values.length);
-    } //- find the mean of the array
+    }
 
     /**
-     * prints all the values
+     * Prints all the values.
      */
     public void print(){
         for (double v : values){
             System.out.print(v+", ");
         }
         System.out.println();
-    } //- prints the data in a single line. Must use an enhanced for loop
+    }
 
     /**
-     * prints all the sorted values (in sorted format)
+     * Prints all the sorted values (in sorted format).
      */
     public void printSorted(){
         sortIfNotSorted();
@@ -162,10 +162,10 @@ public class StatsCalculator {
             System.out.print(v+", ");
         }
         System.out.println();
-    } //- prints the sorted data in a single line. Must use an enhanced for loop
+    }
 
     /**
-     * prints the five number summary and outliers of values
+     * Prints the five number summary and outliers of values.
      */
     public void printFiveNumberSummary(){
         System.out.println("The Five Number Summary is:");
@@ -176,22 +176,20 @@ public class StatsCalculator {
         for (double o : outliers){
             System.out.print(o+", ");
         }
-    } // prints the five number summary as shown below.
-
-    // Find any outliers by using the 1.5IQR rule, store them in an array called outliers, then create a print function that will print outliers and call that in your 5 number summary print method.
+    }
 
     /**
-     * calculates the Interquartile Range
-     * @return double the Interquartile Range
+     * Calculates the Interquartile Range.
+     * @return Double the Interquartile Range.
      */
     private double calculateIQR(){
         return calculateThirdQuartile()-calculateFirstQuartile();
     }
 
     /**
-     * determines if the provided value is an outlier
-     * @param value a double
-     * @return boolean true if the value is an outlier
+     * Determines if the provided value is an outlier.
+     * @param value A double.
+     * @return Boolean true if the value is an outlier.
      */
     private boolean isOutlier(double value){
         double q1 = calculateFirstQuartile();
@@ -201,7 +199,7 @@ public class StatsCalculator {
     }
 
     /**
-     * calculates all of the outliers of values and stores it in the outliers array
+     * Calculates all the outliers of values and stores it in the outliers array.
      */
     public void calculateOutliers(){
 
@@ -222,8 +220,8 @@ public class StatsCalculator {
     }
 
     /**
-     * checks whether the data has been sorted already and sorts the data if this hasn't occured
-     * it calls the sortData method to sort
+     * Checks whether the data has been sorted already and sorts the data if this hasn't occured.
+     * It calls the sortData method to sort.
      */
     private void sortIfNotSorted(){
         if (sortedValues == null) {
