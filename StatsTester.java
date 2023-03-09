@@ -1,4 +1,4 @@
-public class statsTester {
+public class StatsTester {
     public static void pln(Object txt){
         System.out.println(txt);
     }
