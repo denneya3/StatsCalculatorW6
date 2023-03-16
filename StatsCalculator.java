@@ -172,7 +172,7 @@ public class StatsCalculator {
         if (outliers == null) {
             calculateOutliers();
         }
-        System.out.print("Minimum: "+calculateMin()+"\nFirst Quartile: "+calculateFirstQuartile()+"\nMedian: "+calculateMedian()+"\nThird Quartile: "+calculateThirdQuartile()+"\nMaximum: "+calculateMax()+"\nOutliers: "); //more
+        System.out.print("\tMinimum: "+calculateMin()+"\n\tFirst Quartile: "+calculateFirstQuartile()+"\n\tMedian: "+calculateMedian()+"\n\tThird Quartile: "+calculateThirdQuartile()+"\n\tMaximum: "+calculateMax()+"\n\tOutliers: "); //more
         for (double o : outliers){
             System.out.print(o+", ");
         }
